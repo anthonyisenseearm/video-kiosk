@@ -1,0 +1,11 @@
+:root {
+  --bulma-success-h: 208;
+  --bulma-success-s: 100%;
+  --bulma-success-l: 22%;
+  --bulma-success-invert-l: 100%;
+  scrollbar-width: none;
+}
+
+.modal-background {
+  background-color: #000;
+}

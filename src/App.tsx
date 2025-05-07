@@ -44,15 +44,13 @@ function App() {
   return (
     <>
       <section className="section">
-        <div className="container">
+        <div className="container mb-5">
           <div className="content">
             {/* <img src={armLogo} alt="Adventist Risk Management, Inc. Logo" /> */}
             <h1>Adventist Risk Management, Inc.</h1>
             <p className='subtitle'>Tap any of the cards below to watch a video!</p>
           </div>
         </div>
-      </section>
-      <section className="section">
         <div className="container">
           <div className="fixed-grid has-3-cols">
             <div className="grid">
