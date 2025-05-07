@@ -5,21 +5,40 @@ import type { ReactElement } from 'react'
 import { newVimeoEmbeds } from './vimeoEmbeds'
 // import armLogo from './assets/arm-logo.svg'
 
+type ModalOptions = {
+  content: ReactElement,
+  isActive: boolean,
+  onClickClose: Function
+}
+
+function Modal({ content, isActive, onClickClose }: ModalOptions) {
+
+  return (
+    <>
+      <div className={`modal ${isActive && 'is-active'}`}>
+        <div className="modal-background" onClick={() => onClickClose()}></div>
+        <div className="modal-content" style={{ width: "80rem" }}>
+          {content}
+        </div>
+        <button className="modal-close is-large" aria-label="close" onClick={() => onClickClose()}></button>
+      </div>
+    </>
+  )
+
+}
+
 function App() {
 
   useSignals()
 
-  const mediaModalIsActive: Signal<boolean> = useSignal(false)
-  const mediaModalVimeoEmbed: Signal<ReactElement> = useSignal(<></>)
+  const mediaModalActiveIndex: Signal<number | undefined> = useSignal()
 
-  function openMediaModal(embed: ReactElement): void {
-    mediaModalVimeoEmbed.value = embed
-    mediaModalIsActive.value = true
+  function openMediaModal(embedIndex: number): void {
+    mediaModalActiveIndex.value = embedIndex
   }
 
   function closeMediaModal(): void {
-    mediaModalVimeoEmbed.value = <></>
-    mediaModalIsActive.value = false
+    mediaModalActiveIndex.value = undefined
   }
 
   return (
@@ -37,8 +56,8 @@ function App() {
         <div className="container">
           <div className="fixed-grid has-3-cols">
             <div className="grid">
-              {newVimeoEmbeds.map(vimeoEmbed => <>
-                <div className='cell' onClick={() => openMediaModal(vimeoEmbed.element)} style={{ cursor: "pointer" }}>
+              {newVimeoEmbeds.map((vimeoEmbed, index) => 
+                <div className='cell' onClick={() => openMediaModal(index)} style={{ cursor: "pointer" }} key={index}>
                   <div className="box is-flex is-flex-direction-column is-justify-content-space-between" style={{ minHeight: "100%" }}>
                     <div className="content">
                       <figure className="is-16by9">
@@ -52,21 +71,20 @@ function App() {
                     </div>
                   </div>
                 </div>
-              </>)}
+              )}
             </div>
             <div className="cell"></div>
           </div>
         </div>
       </section>
-      <div className={`modal ${mediaModalIsActive.value && 'is-active'}`}>
-        <div className="modal-background" onClick={closeMediaModal}></div>
-        <div className="modal-content" style={{ width: "80rem" }}>
-          {mediaModalVimeoEmbed.value}
-        </div>
-        <button className="modal-close is-large" aria-label="close" onClick={closeMediaModal}></button>
-      </div>
+      {newVimeoEmbeds.map((vimeoEmbed, index) => <div key={index}>
+        <Modal
+          isActive={index === mediaModalActiveIndex.value}
+          onClickClose={closeMediaModal}
+          content={vimeoEmbed.element}
+        />
+      </div>)}
     </>
-
   )
 
 }
