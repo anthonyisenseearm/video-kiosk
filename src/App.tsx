@@ -52,7 +52,7 @@ function App() {
           </div>
         </div>
         <div className="container">
-          <div className="fixed-grid has-3-cols">
+          <div className="fixed-grid has-4-cols">
             <div className="grid">
               {newVimeoEmbeds.map((vimeoEmbed, index) => 
                 <div className='cell' onClick={() => openMediaModal(index)} style={{ cursor: "pointer" }} key={index}>
