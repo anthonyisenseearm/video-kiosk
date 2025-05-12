@@ -45,7 +45,7 @@ function App() {
     <>
       <section className="section">
         <div className="container mb-5">
-          <div className="content">
+          <div className="content has-text-centered">
             {/* <img src={armLogo} alt="Adventist Risk Management, Inc. Logo" /> */}
             <h1>Adventist Risk Management, Inc.</h1>
             <p className='subtitle'>Tap any of the cards below to watch a video!</p>
