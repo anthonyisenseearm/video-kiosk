@@ -3,7 +3,7 @@ import { Signal } from '@preact/signals-react'
 import './App.css'
 import type { ReactElement } from 'react'
 import { newVimeoEmbeds } from './vimeoEmbeds'
-// import armLogo from './assets/arm-logo.svg'
+import { ARMLogo } from './ARMLogo'
 
 type ModalOptions = {
   content: ReactElement,
@@ -45,16 +45,20 @@ function App() {
     <>
       <section className="section">
         <div className="container mb-5">
-          <div className="content has-text-centered">
-            {/* <img src={armLogo} alt="Adventist Risk Management, Inc. Logo" /> */}
-            <h1>Adventist Risk Management, Inc.</h1>
-            <p className='subtitle'>Tap any of the cards below to watch a video!</p>
+          <div className="is-flex is-justify-content-center">
+            <ARMLogo />
+            <div className="is-flex is-flex-direction-column is-justify-content-center">
+              <div className="content ml-5">
+                <h1>Adventist Risk Management<sup>®</sup>, Inc.</h1>
+                <p className='subtitle'>Tap any of the cards below to watch a video!</p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="container">
           <div className="fixed-grid has-4-cols">
             <div className="grid">
-              {newVimeoEmbeds.map((vimeoEmbed, index) => 
+              {newVimeoEmbeds.map((vimeoEmbed, index) =>
                 <div className='cell' onClick={() => openMediaModal(index)} style={{ cursor: "pointer" }} key={index}>
                   <div className="box is-flex is-flex-direction-column is-justify-content-space-between" style={{ minHeight: "100%" }}>
                     <div className="content">

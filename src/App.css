@@ -19,3 +19,14 @@
 .modal.is-active {
   transform: translateY(0vh);
 }
+
+.arm-logo {
+  width: 7.5rem;
+  fill: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .arm-logo path {
+    fill: hsl(221deg 14% 21%);
+  }
+}
