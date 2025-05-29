@@ -4,6 +4,7 @@ import './App.css'
 import type { ReactElement } from 'react'
 import { newVimeoEmbeds } from './vimeoEmbeds'
 import { ARMLogo } from './ARMLogo'
+import Player from '@vimeo/player'
 
 type ModalOptions = {
   content: ReactElement,
@@ -32,13 +33,26 @@ function App() {
   useSignals()
 
   const mediaModalActiveIndex: Signal<number | undefined> = useSignal()
+  const vimeoPlayer: Signal<any> = useSignal()
 
   function openMediaModal(embedIndex: number): void {
     mediaModalActiveIndex.value = embedIndex
+    const vimeoIFrame: HTMLIFrameElement | null = document.querySelector(`.modal-${embedIndex} iframe`)
+    console.log(vimeoIFrame)
+    if (vimeoIFrame !== null) {
+      vimeoPlayer.value = new Player(vimeoIFrame)
+      vimeoPlayer.value.setCurrentTime(0)
+      vimeoPlayer.value.play()
+      vimeoPlayer.value.on('ended', () => {
+        closeMediaModal()
+      })
+    }
   }
 
   function closeMediaModal(): void {
     mediaModalActiveIndex.value = undefined
+    vimeoPlayer.value.pause()
+    vimeoPlayer.value = undefined
   }
 
   return (
@@ -79,7 +93,7 @@ function App() {
           </div>
         </div>
       </section>
-      {newVimeoEmbeds.map((vimeoEmbed, index) => <div key={index}>
+      {newVimeoEmbeds.map((vimeoEmbed, index) => <div className={`modal-${index}`} key={index}>
         <Modal
           isActive={index === mediaModalActiveIndex.value}
           onClickClose={closeMediaModal}
