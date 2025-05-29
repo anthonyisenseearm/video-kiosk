@@ -9,3 +9,13 @@
 .modal-background {
   background-color: #000;
 }
+
+.modal {
+  transition: transform .75s ease-in-out 0s;
+  transform: translateY(100vh);
+  display: flex;
+}
+
+.modal.is-active {
+  transform: translateY(0vh);
+}
