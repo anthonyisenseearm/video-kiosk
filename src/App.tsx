@@ -57,7 +57,7 @@ function App() {
         </div>
         <div className="container">
           <div className="fixed-grid has-4-cols">
-            <div className="grid">
+            <div className="grid is-gap-4">
               {newVimeoEmbeds.map((vimeoEmbed, index) =>
                 <div className='cell' onClick={() => openMediaModal(index)} style={{ cursor: "pointer" }} key={index}>
                   <div className="box is-flex is-flex-direction-column is-justify-content-space-between" style={{ minHeight: "100%" }}>
