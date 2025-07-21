@@ -20,6 +20,21 @@
   transform: translateY(0vh);
 }
 
+.modal-content {
+  margin: 0;
+  min-width: 90%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.modal-content > iframe {
+  height: 100%;
+  width: 100%;
+}
+
 .arm-logo {
   width: 7.5rem;
   fill: none;

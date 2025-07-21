@@ -18,7 +18,7 @@ function Modal({ content, isActive, onClickClose }: ModalOptions) {
     <>
       <div className={`modal ${isActive ? 'is-active' : ""}`}>
         <div className="modal-background" onClick={() => onClickClose()}></div>
-        <div className="modal-content" style={{ width: "80rem" }}>
+        <div className="modal-content">
           {content}
         </div>
         <button className="modal-close is-large" aria-label="close" onClick={() => onClickClose()}></button>
