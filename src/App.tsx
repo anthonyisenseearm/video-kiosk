@@ -68,7 +68,7 @@ function App() {
           </div>
         </div>
         <div>
-          <div className="container">
+          <div className="container mb-6">
             <div className="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-center	">
               {newVimeoEmbeds.map((vimeoEmbed, index) =>
                 <div className='m-4' onClick={() => openMediaModal(index)} style={{ cursor: "pointer" }} key={index}>
